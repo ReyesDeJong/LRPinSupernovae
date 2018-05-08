@@ -18,8 +18,8 @@ from __future__ import division
 from __future__ import print_function
 
 import tensorflow as tf
-from module import Module
-import variables
+from modules.module import Module
+import modules.variables as variables
 #import activations
 import numpy as np
 na = np.newaxis

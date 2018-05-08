@@ -17,8 +17,8 @@ from __future__ import print_function
 import copy
 import sys
 import numpy as np
-from module import Module
-from train2 import Train 
+from modules.module import Module
+from modules.train2 import Train 
 import tensorflow as tf
 
 #no lo usa el 'na'
