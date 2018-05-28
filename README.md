@@ -78,15 +78,22 @@ but, we highly recommend usage of `epsilon` or `alphabeta` rules.
 
 The resulting `relevances` is a variable with same dimensions as the input, and in case of a single-channel image, can be visualized as a heatmap. Like:
 
-### 4. Compute relevances every layer backwards from the output to the input  
+MNIST IMAGE
 
-Follow steps (1) from Features mentioned above.
+### 4. Get relevances of intermidiate layers.  
+
+Iterate through layers (modules) of `net` object and save relevances of every module.
 
        relevance_layerwise = []
        R = output
        for layer in net.modules[::-1]:
-           R = net.lrp_layerwise(layer, R, 'simple')
+           R = net.lrp_layerwise(layer, R, lrp_rule, lrp_rule_param)
            relevance_layerwise.append(R)
+           
+           
+# LRP for a pretrained model
+
+Follow steps (1) and (3) from Features mentioned above.
 <!---
 
 
@@ -96,51 +103,10 @@ This tensorflow wrapper provides simple and accessible stand-alone implementatio
 
 
     
-# Features
-
-## 1. Model 
-
-This TF-wrapper considers the layers in the neural network to be in the form of a Sequence. A quick way to define a network would be
-
-        net = Sequential([Linear(input_dim=784,output_dim=1296, act ='relu', batch_size=FLAGS.batch_size),
-                     Linear(1296, act ='relu'), 
-                     Linear(1296, act ='relu'),
-                     Linear(10, act ='relu'),
-                     Softmax()])
-
-        output = net.forward(input_data)
-             
-## 2. Train the network
-
-This `net` can then be used to propogate and optimize using
-
-        trainer = net.fit(output, ground_truth, loss='softmax_crossentropy', optimizer='adam', opt_params=[FLAGS.learning_rate])
-
-## 3. LRP - Layer-wise relevance propagation
-
-And compute the contributions of the input pixels towards the decision by
-
-        relevance = net.lrp(output, 'simple', 1.0)
-
-the different lrp variants available are:
-
-        'simple'and 'epsilon','flat','ww' and 'alphabeta' 
-
-## 4. Compute relevances every layer backwards from the output to the input  
-
-Follow steps (1) from Features mentioned above.
-
-       relevance_layerwise = []
-       R = output
-       for layer in net.modules[::-1]:
-           R = net.lrp_layerwise(layer, R, 'simple')
-           relevance_layerwise.append(R)
-           
 
 
-# LRP for a pretrained model
 
-Follow steps (1) and (3) from Features mentioned above.
+
 
 
 # The LRP Toolbox Paper
