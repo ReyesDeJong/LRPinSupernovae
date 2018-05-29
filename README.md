@@ -14,7 +14,7 @@ This Tensorflow adaptation of LRP provides an implementations of LRP for artific
 
 The focus of this repository is to extend capabilities of original LRP-tensorflow toolbox, by providing examples on various data sets, add relevance propagation through variations of implemented layers, and enable to reproduce results of paper **'Enhanced Rotational Invariant Convolutional Neural Network for Supernovae Detection'** by **Reyes et al., 2018**.
 
-MNIST VIDEO 
+<img src="docs/gifs/mnist.gif" width="500" height="500" />
 
 SUPERNOVAE VIDEO
 
@@ -99,7 +99,7 @@ Follow steps (1) and (3) from Features mentioned above.
 
 This tensorflow wrapper provides simple and accessible stand-alone implementations of LRP for artificial neural networks.
 
-<img src="doc/images/1.png" width="215" height="215"> <img src="doc/images/2.png" width="215" height="215"> <img src="doc/images/3.png" width="215" height="215"> <img src="doc/images/4.png" width="215" height="215">
+
 
 
     
