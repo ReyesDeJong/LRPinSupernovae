@@ -8,7 +8,7 @@ An adaptation to the Layer-wise Relevance Propagation (LRP) algorithm developed 
 2. Original LRP toolbox repository for raw numpy can be found on [LRP-toolbox](https://github.com/sebastian-lapuschkin/lrp_toolbox)
 3. Original LRP toolbox repository for Tensorflow can be found on [LRP-tensorflow](https://github.com/VigneshSrinivasan10/interprettensor)
 
-The LRP algorithm projects a classifier's output to it's input space, by attributing relevance scores to important features of the input. For example, if we have an image as input of a classifier, output score of the model will be projected to the input image as a heatmap that identify relevant pixels for the prediction made. by using the topology of the learned model itself.
+The LRP algorithm projects a classifier's output to it's input space, by attributing relevance scores to important features of the input. For example, if we have an image as input of a classifier, output score of the model will be projected to the input image as a heatmap that identify relevant pixels for the prediction made.
 
 This Tensorflow adaptation of LRP provides an implementations of LRP for artificial neural networks (ANN). Specially Multi Layer Perceptrons (MLP) and Convolutional Neuralk Networks (CNN) in the Deep Learning paradigm. 
 
@@ -91,9 +91,64 @@ Iterate through layers (modules) of `net` object and save relevances of every mo
            relevance_layerwise.append(R)
            
            
-# LRP for a pretrained model
+## LRP for a pretrained model
 
-Follow steps (1) and (3) from Features mentioned above.
+To load a pretrained model you have two options:
+
+### 1. Load Tensorflow checkpoint
+
+Easiest way is to train a model under LRP framework, by following usage steps (1) and (2), saving a tensorflow checkpoint of the trained model:
+
+
+       #initialize a saver object
+       saver = tf.train.Saver()
+       
+       #TRAIN YOUR MODEL
+       
+       #after trainning save checkpoint by passing session and a path (CHECKPOINT_DIR)
+       saver.save(session, CHECKPOINT_DIR)
+       
+When ever you want to load your trained model, just call `saver.restore(sess, CHECKPOINT_DIR)` instead of               trainning a model. To perform LRP over this pretrained model, just follow usage step (3) or (4) as always.
+
+### 2. Load numpy weights
+
+Another way to load a pretrained model is to have weights and biases of every layer stored as an array in a `*.npy` file. For every layer, weights should be saved like `LAYER_NAME-W.npy` and biases like `LAYER_NAME-B.npy`. This parameters can be loaded to the model at usage step (1) by doing the following: 
+
+      net = sequential32.Sequential([convolution32.Convolution(kernel_size=5, output_depth=32, input_depth=1,
+                                         input_dim=28, act ='relu',
+                                         stride_size=1, pad='SAME', param_dir=path_weights+'CNN1'),
+                             maxpool32.MaxPool(),
+
+                             convolution32.Convolution(kernel_size=5,output_depth=64, stride_size=1,
+                                         act ='relu', pad='SAME', param_dir=path_weights+'CNN2'),
+                             maxpool32.MaxPool(),
+
+                             linear32.Linear(1024, act ='relu', param_dir=path_weights+'FC1'),
+
+                             linear32.Linear(10, act ='linear', param_dir=path_weights+'FC2')])
+
+where `path_weights` is the path to the folder were `*.npy` files of model parameters are stored, and the subsecuent string (e.g. `CNN1`) is the corresponding layer name (e.g. first convolutional layer should have a weights file named `CNN1-W.npy` and a biases file named `CNN1-B.npy`).
+
+Because of encapsulation of layers when using LRP framwork to train, a list of weights and biases of every layer with parameters can be obtained by running:
+
+      W,B = net.getWeights()
+      weights, biases = sess.run([W,B])
+
+## Examples
+
+## Extending LRP
+
+Have in mind that for every layer of the model, there must be an LRP implementation (for every rule) that back propagates incoming relevances to the previous layer, this is often a complex operation and should be further studied for optimization.
+
+As a recomendation, whenever you want to use a layer which is not implemented under de LRP framework try to take advantage of currently implemented layers and adapt them to your purpose. For example, to implement Batch Normalization Layer, we implemented the forward-pass like a convolutional operation, thus LRP back propagation of relevances could be reused from a convolutional layer. Another example is thecyclic pooling layer, which was implemented through an already existing average pooling layer.
+
+## Misc
+
+For further research and projects involving LRP, visit [heatmapping.org](http://heatmapping.org)
+
+## WARNING
+
+Memory leak
 <!---
 
 
