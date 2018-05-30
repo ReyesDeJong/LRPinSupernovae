@@ -137,11 +137,11 @@ Because of encapsulation of layers when using LRP framwork to train, a list of w
 
 ## Examples
 
-There are two examples on this repo; a basic MNIST example on the `MNIST` folder that produces relevance heatmaps like:
+There are two examples on this repo; a basic MNIST example on the `examples/MNIST` folder that produces relevance heatmaps like:
 
 <img src="doc/images/40.png" width="910" height="243">
 
-and an example over de HiTS 2013 dataset on the `Supernovae/paper` folder, that enables to replicate visualizations of the repo's paper with images like:
+and an example over de HiTS 2013 dataset on the `examples/Supernovae/paper` folder, that enables to replicate visualizations of the repo's paper with images like:
 
 <img src="doc/images/SN48.png" width="655" height="360">
 
