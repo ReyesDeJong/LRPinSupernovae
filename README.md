@@ -14,7 +14,7 @@ This Tensorflow adaptation of LRP provides an implementations of LRP for artific
 
 The focus of this repository is to extend capabilities of original LRP-tensorflow toolbox, by providing examples on various data sets, add relevance propagation through variations of implemented layers, and enable to reproduce results of paper **'Enhanced Rotational Invariant Convolutional Neural Network for Supernovae Detection'** by **Reyes et al., 2018**.
 
-<img src="docs/gifs/mnist.gif" width="300" height="300" />
+<img src="doc/gifs/mnist.gif" width="300" height="300" />
 
 SUPERNOVAE VIDEO
 
@@ -79,7 +79,7 @@ but, we highly recommend usage of `epsilon` or `alphabeta` rules.
 
 The resulting `relevances` is a variable with same dimensions as the input, and in case of a single-channel image, can be visualized as a heatmap. Like:
 
-<img src="docs/images/2.png" width="372" height="203"> <img src="docs/images/3.png" width="372" height="203">
+<img src="doc/images/2.png" width="372" height="203"> <img src="doc/images/3.png" width="372" height="203">
 
 ### 4. Get relevances of intermidiate layers.  
 
