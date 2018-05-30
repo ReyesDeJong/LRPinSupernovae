@@ -1,6 +1,6 @@
 # USAGE
 
-This folder contains two example for LRP on HiTS 2013 dataset, one for the original DeepHiTS model and other for the enhanced model proposed in the repo's paper. HiTS dataset in `.tfrecords` format will be soon publicly available. Each `*.ipynb` jupyter notebbok contains comments and a detailed explanation on each code block
+This folder contains two example for LRP on HiTS 2013 dataset, one for the original DeepHiTS model and other for the enhanced model proposed in the repo's paper. HiTS dataset in `.tfrecords` format will be soon publicly available. Each `*.ipynb` jupyter notebook contains comments and a detailed explanation on each code block.
 
 ### 1. Trainning
 
