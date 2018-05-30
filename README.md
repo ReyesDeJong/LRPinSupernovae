@@ -139,11 +139,11 @@ Because of encapsulation of layers when using LRP framwork to train, a list of w
 
 There are two examples on this repo; a basic MNIST example on the `MNIST` folder that produces relevance heatmaps like:
 
-MNIST IMAGES
+<img src="doc/images/40.png" width="910" height="243">
 
 and an example over de HiTS 2013 dataset on the `Supernovae/paper` folder, that enables to replicate visualizations of the repo's paper with images like:
 
-HITS IMAGES
+<img src="doc/images/SN48.png" width="655" height="360">
 
 Each folder has a readme that explain instructions on how to run respective file, but the main idea is to have a notebook where the model will be trained to save its parameter, and another notebook to instantiate the trained model and run LRP through it. Each notebook contains comments that guide execution of every block of code.
 
