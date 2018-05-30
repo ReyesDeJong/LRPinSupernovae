@@ -79,7 +79,7 @@ but, we highly recommend usage of `epsilon` or `alphabeta` rules.
 
 The resulting `relevances` is a variable with same dimensions as the input, and in case of a single-channel image, can be visualized as a heatmap. Like:
 
-<img src="docs/gifs/2.png" width="372" height="203"> <img src="docs/gifs/3.png" width="372" height="203">
+<img src="docs/images/2.png" width="372" height="203"> <img src="docs/images/3.png" width="372" height="203">
 
 ### 4. Get relevances of intermidiate layers.  
 
