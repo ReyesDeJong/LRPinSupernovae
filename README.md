@@ -23,6 +23,7 @@ SUPERNOVAE VIDEO
     python >= 3
     matplotlib >= 1.3.1
     scikit-image > 0.11.3
+    jupyter notebook > 5.0.0
     
 ### What's new
 
@@ -78,7 +79,7 @@ but, we highly recommend usage of `epsilon` or `alphabeta` rules.
 
 The resulting `relevances` is a variable with same dimensions as the input, and in case of a single-channel image, can be visualized as a heatmap. Like:
 
-MNIST IMAGE
+<img src="docs/gifs/2.png" width="372" height="203"> <img src="docs/gifs/3.png" width="372" height="203">
 
 ### 4. Get relevances of intermidiate layers.  
 
@@ -136,6 +137,18 @@ Because of encapsulation of layers when using LRP framwork to train, a list of w
 
 ## Examples
 
+There are two examples on this repo; a basic MNIST example on the `MNIST` folder that produces relevance heatmaps like:
+
+MNIST IMAGES
+
+and an example over de HiTS 2013 dataset on the `Supernovae/paper` folder, that enables to replicate visualizations of the repo's paper with images like:
+
+HITS IMAGES
+
+Each folder has a readme that explain instructions on how to run respective file, but the main idea is to have a notebook where the model will be trained to save its parameter, and another notebook to instantiate the trained model and run LRP through it. Each notebook contains comments that guide execution of every block of code.
+
+We recommend to start with the self-contained example of MNIST, to get an insight on how LRP works. 
+
 ## Extending LRP
 
 Have in mind that for every layer of the model, there must be an LRP implementation (for every rule) that back propagates incoming relevances to the previous layer, this is often a complex operation and should be further studied for optimization.
@@ -146,43 +159,24 @@ As a recomendation, whenever you want to use a layer which is not implemented un
 
 For further research and projects involving LRP, visit [heatmapping.org](http://heatmapping.org)
 
-## WARNING
+# WARNINGS
 
-Memory leak
-<!---
+1. When running LRP over a large model or/and a large batch of images, take in account that the algorithm requires much more memory than a simple forward pass, so being able to perform a prediction with a certain model, won't guarantee that you will be able to perform LRP on it.  
 
-
-This tensorflow wrapper provides simple and accessible stand-alone implementations of LRP for artificial neural networks.
+2. After subsequent runs of LRP on a single instance, we registered a proportionally increasing amount of memory usage, this is attributed to a **memory leak** in the current implementation of the model. So be careful to not run out of memory when performing LRP iteratively over a large amount of data.
 
 
+# Related Paper
 
+[Our paper](http://jmlr.org/papers/volume17/15-618/15-618.pdf), cite by using:
 
-    
-
-
-
-
-
-
-# The LRP Toolbox Paper
-
-When using (any part) of this wrapper, please cite [our paper](http://jmlr.org/papers/volume17/15-618/15-618.pdf)
-
-    @article{JMLR:v17:15-618,
-        author  = {Sebastian Lapuschkin and Alexander Binder and Gr{{\'e}}goire Montavon and Klaus-Robert M{{{\"u}}}ller and Wojciech Samek},
-        title   = {The LRP Toolbox for Artificial Neural Networks},
-        journal = {Journal of Machine Learning Research},
-        year    = {2016},
-        volume  = {17},
-        number  = {114},
-        pages   = {1-5},
-        url     = {http://jmlr.org/papers/v17/15-618.html}
-    }
-
-
-    
-# Misc
-
-For further research and projects involving LRP, visit [heatmapping.org](http://heatmapping.org)
-   
--->
+      @article{reyes2017enhanced,
+        title={Enhanced Rotational Invariant Convolutional Neural Network for Supernovae Detection},
+        author={Reyes, Esteban and Est{\'e}ve, Pablo and Reyes, Ignacio and Cabrera-Vives, Guillermo and F{\"o}rster, Francisco ...},
+        journal={The Astrophysical Journal},
+        volume={836},
+        number={1},
+        pages={97},
+        year={2017},
+        publisher={IOP Publishing}
+      }
