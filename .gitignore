@@ -3,6 +3,7 @@
 bin/
 tmp/
 datasets/
+TB/
 *.pyc
 *.npy
 .ipynb_checkpoints/
