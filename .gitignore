@@ -4,6 +4,8 @@ bin/
 tmp/
 datasets/
 *.pyc
+*.npy
+.ipynb_checkpoints/
 *-checkpoint.ipynb
 *.tmp
 *.bak
