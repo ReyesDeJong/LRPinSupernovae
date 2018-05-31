@@ -1,4 +1,4 @@
-# Adaptation of LRP framework for tensorflow
+# Adaptation of LRP framework for Tensorflow
 
 An adaptation to the Layer-wise Relevance Propagation (LRP) algorithm developed by **Lapuschkin et al., 2016** on their work **'The LRP Toolbox for Artificial Neural Networks' for the 'Journal of Machine Learning Research'**.
 
@@ -8,11 +8,11 @@ An adaptation to the Layer-wise Relevance Propagation (LRP) algorithm developed 
 2. Original LRP toolbox repository for raw numpy can be found on [LRP-toolbox](https://github.com/sebastian-lapuschkin/lrp_toolbox)
 3. Original LRP toolbox repository for Tensorflow can be found on [LRP-tensorflow](https://github.com/VigneshSrinivasan10/interprettensor)
 
-The LRP algorithm projects a classifier's output to it's input space, by attributing relevance scores to important features of the input. For example, if we have an image as input of a classifier, output score of the model will be projected to the input image as a heatmap that identify relevant pixels for the prediction made.
+The LRP algorithm projects a classifier's output to its input space, by attributing relevance scores to important features of the input. For example, if we have an image as the input of a classifier, output score of the model will be projected to the input image as a heatmap that identifies relevant pixels for the prediction made.
 
-This Tensorflow adaptation of LRP provides an implementations of LRP for artificial neural networks (ANN). Specially Multi Layer Perceptrons (MLP) and Convolutional Neuralk Networks (CNN) in the Deep Learning paradigm. 
+This Tensorflow adaptation of LRP provides an implementation of LRP for artificial neural networks (ANN). Specially Multi-Layer Perceptrons (MLP) and Convolutional Neural Networks (CNN) in the Deep Learning paradigm. 
 
-The focus of this repository is to extend capabilities of original LRP-tensorflow toolbox, by providing examples on various data sets, add relevance propagation through variations of implemented layers, and enable to reproduce results of paper **'Enhanced Rotational Invariant Convolutional Neural Network for Supernovae Detection'** by **Reyes et al., 2018**.
+The focus of this repository is to extend capabilities of the original LRP-tensorflow toolbox, by providing examples on various data sets, add relevance propagation through variations of implemented layers, and enable to reproduce results of paper **'Enhanced Rotational Invariant Convolutional Neural Network for Supernovae Detection'** by **Reyes et al., 2018**.
 
 <img src="doc/gifs/mnist.gif" width="300" height="300" />
 
@@ -27,11 +27,11 @@ SUPERNOVAE VIDEO
     
 ### What's new
 
-1. Implementation of cyclic pooling layer, like in **'Exploiting cyclic sym-metry in convolutional neural networks'** by **Dieleman et al., 2016**
+1. Implementation of cyclic pooling layer, like in **'Exploiting cyclic symmetry in convolutional neural networks'** by **Dieleman et al., 2016**
 2. Implementation of rotation layer, like in **'Deep-hits: Rotation invariant convolutional neural network for transient
 detection'** by **Cabrera-Vives et al., 2017**
 3. Implementation of Batchnormalization layer, although LRP relevance propagation is not fully tested.
-4. LRP axamples on HiTS 2013 dataset
+4. LRP examples on HiTS 2013 dataset
 
 
 ## Usage
@@ -55,7 +55,7 @@ First you must instantiate a model, indicating the layers (modules) in the neura
 
         output = net.forward(input_data)
 
-This way of defining the network, provides a way to iteratively go though all network modules (layes) both in the forward pass and in the backward LRP propagation of relevance though the different layers.
+This way of defining the network provides a way to iteratively go through all network modules (layers) both in the forward pass and in the backward LRP propagation of relevance through the different layers.
              
 ### 2. Train the model
 
@@ -81,7 +81,7 @@ The resulting `relevances` is a variable with same dimensions as the input, and 
 
 <img src="doc/images/2.png" width="372" height="203"> <img src="doc/images/3.png" width="372" height="203">
 
-### 4. Get relevances of intermidiate layers.  
+### 4. Get relevances of intermediate layers.  
 
 Iterate through layers (modules) of `net` object and save relevances of every module.
 
@@ -106,10 +106,10 @@ Easiest way is to train a model under LRP framework, by following usage steps (1
        
        #TRAIN YOUR MODEL
        
-       #after trainning save checkpoint by passing session and a path (CHECKPOINT_DIR)
+       #after training save checkpoint by passing session and a path (CHECKPOINT_DIR)
        saver.save(session, CHECKPOINT_DIR)
        
-When ever you want to load your trained model, just call `saver.restore(sess, CHECKPOINT_DIR)` instead of               trainning a model. To perform LRP over this pretrained model, just follow usage step (3) or (4) as always.
+Whenever you want to load your trained model, just call `saver.restore(sess, CHECKPOINT_DIR)` instead of               training a model. To perform LRP over this pretrained model, just follow usage step (3) or (4) as always.
 
 ### 2. Load numpy weights
 
@@ -128,9 +128,9 @@ Another way to load a pretrained model is to have weights and biases of every la
 
                              linear32.Linear(10, act ='linear', param_dir=path_weights+'FC2')])
 
-where `path_weights` is the path to the folder were `*.npy` files of model parameters are stored, and the subsecuent string (e.g. `CNN1`) is the corresponding layer name (e.g. first convolutional layer should have a weights file named `CNN1-W.npy` and a biases file named `CNN1-B.npy`).
+where `path_weights` is the path to the folder were `*.npy` files of model parameters are stored, and the subsequent string (e.g. `CNN1`) is the corresponding layer name (e.g. first convolutional layer should have a weights file named `CNN1-W.npy` and a biases file named `CNN1-B.npy`).
 
-Because of encapsulation of layers when using LRP framwork to train, a list of weights and biases of every layer with parameters can be obtained by running:
+Because of encapsulation of layers when using LRP framework to train, a list of weights and biases of every layer with parameters can be obtained by running:
 
       W,B = net.getWeights()
       weights, biases = sess.run([W,B])
@@ -145,7 +145,7 @@ and an example over de HiTS 2013 dataset on the `examples/Supernovae/paper` fold
 
 <img src="doc/images/SN48.png" width="655" height="360">
 
-Each folder has a readme that explain instructions on how to run respective file, but the main idea is to have a notebook where the model will be trained to save its parameter, and another notebook to instantiate the trained model and run LRP through it. Each notebook contains comments that guide execution of every block of code.
+Each folder has a readme that explains instructions on how to run respective files, but the main idea is to have a notebook where the model will be trained to save its parameter, and another notebook to instantiate the trained model and run LRP through it. Each notebook contains comments that guide the execution of every block of code.
 
 We recommend to start with the self-contained example of MNIST, to get an insight on how LRP works. 
 
@@ -153,7 +153,7 @@ We recommend to start with the self-contained example of MNIST, to get an insigh
 
 Have in mind that for every layer of the model, there must be an LRP implementation (for every rule) that back propagates incoming relevances to the previous layer, this is often a complex operation and should be further studied for optimization.
 
-As a recomendation, whenever you want to use a layer which is not implemented under de LRP framework try to take advantage of currently implemented layers and adapt them to your purpose. For example, to implement Batch Normalization Layer, we implemented the forward-pass like a convolutional operation, thus LRP back propagation of relevances could be reused from a convolutional layer. Another example is thecyclic pooling layer, which was implemented through an already existing average pooling layer.
+As a recommendation, whenever you want to use a layer which is not implemented under de LRP framework try to take advantage of currently implemented layers and adapt them to your purpose. For example, to implement Batch Normalization Layer, we implemented the forward-pass like a convolutional operation, thus LRP back propagation of relevances could be reused from a convolutional layer. Another example is the cyclic pooling layer, which was implemented through an already existing average pooling layer.
 
 ## Misc
 
