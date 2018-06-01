@@ -4,6 +4,7 @@ bin/
 tmp/
 datasets/
 TB/
+weights/
 *.pyc
 *.npy
 .ipynb_checkpoints/
