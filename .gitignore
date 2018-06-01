@@ -5,6 +5,7 @@ tmp/
 datasets/
 TB/
 weights/
+videoWCCI2018/
 *.pyc
 *.npy
 .ipynb_checkpoints/
