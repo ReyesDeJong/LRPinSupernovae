@@ -27,6 +27,15 @@ class ZTF_data_preprocessor(object):
     def __init__(self, data_path = None):
         self.data_path = data_path
         
+    def save_to_pickle(self, save_path, array2save = None, file_name="samples", data_path = None):
+        if data_path is None:
+            data_path = self.data_path
+        
+        if array2save is None:
+            array2save = self.get_preprocessed_data(data_path)
+        with open(save_path+'/'+file_name+'.pkl', 'wb') as f:
+            pkl.dump(array2save, f)
+        
     def get_preprocessed_data(self, path = None):
         if path is None:
             path = self.data_path
@@ -130,4 +139,6 @@ if __name__ == "__main__":
     
     print('\nNumber of reals after preprocessing: %d' % preprocessed_reals.shape[0])
     print('Number of bogus after preprocessing: %d' % preprocessed_bogus.shape[0])
+    
+    data_processor.save_to_pickle(path_data, array2save = preprocessed_bogus)
     
