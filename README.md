@@ -174,7 +174,6 @@ For further research and projects involving LRP, visit [heatmapping.org](http://
         title={Enhanced Rotational Invariant Convolutional Neural Network for Supernovae Detection},
         author={Reyes, Esteban and Est{\'e}ve, Pablo and Reyes, Ignacio and Cabrera-Vives, Guillermo and F{\"o}rster, Francisco ...},
         booktitle={Neural Networks (IJCNN), 2018 International Joint Conference on},
-        pages={251--258},
         year={2018},
         organization={IEEE}
       }
